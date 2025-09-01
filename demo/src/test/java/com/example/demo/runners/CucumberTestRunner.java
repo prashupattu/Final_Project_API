@@ -1,8 +1,8 @@
 package com.example.demo.runners;
 
-import org.junit.runner.RunWith;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
+import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -10,7 +10,8 @@ import io.cucumber.junit.CucumberOptions;
         glue = {"com.example.demo.steps"},
         plugin = {
                 "pretty",
-                "json:target/cucumber.json"   // Generate JSON only
+                "html:target/cucumber-html-reports",
+                "json:target/cucumber.json"   // ✅ required for reporting plugin
         },
         monochrome = true
 )
