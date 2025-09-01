@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.example.demo.runners.CucumberTestRunner
+-------------------------------------------------------------------------------
+Tests run: 25, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.23 s -- in com.example.demo.runners.CucumberTestRunner
