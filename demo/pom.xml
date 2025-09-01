@@ -33,7 +33,7 @@
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
-		<!-- Spring Boot test (exclude JUnit 5) -->
+		<!-- Exclude JUnit 5 from Spring Boot test starter -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -58,7 +58,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Cucumber with Java + JUnit4 -->
+		<!-- Cucumber with Java + JUnit4 runner -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-java</artifactId>
@@ -89,7 +89,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
-			<!-- Cucumber reporting (only once, cleaned up) -->
+			<!-- Cucumber reporting plugin -->
 			<plugin>
 				<groupId>net.masterthought</groupId>
 				<artifactId>maven-cucumber-reporting</artifactId>
@@ -102,17 +102,59 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<projectName>API Capstone Tests</projectName>
-							<outputDirectory>${project.build.directory}/cucumber-html</outputDirectory>
+							<outputDirectory>${project.build.directory}/cucumber-report</outputDirectory>
+							<inputDirectory>${project.build.directory}</inputDirectory>
 							<jsonFiles>
 								<param>${project.build.directory}/cucumber.json</param>
 							</jsonFiles>
+							<projectName>API Capstone Tests</projectName>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>net.masterthought</groupId>
+				<artifactId>maven-cucumber-reporting</artifactId>
+				<version>5.7.4</version>
+				<executions>
+					<execution>
+						<id>cucumber-report</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<projectName>Demo Cucumber Project</projectName>
+							<outputDirectory>${project.build.directory}/cucumber-html-reports</outputDirectory>
+							<cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 
-			<!-- Surefire plugin to run cucumber runner -->
+			<plugin>
+				<groupId>net.masterthought</groupId>
+				<artifactId>maven-cucumber-reporting</artifactId>
+				<version>5.7.4</version>
+				<executions>
+					<execution>
+						<id>cucumber-report</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<projectName>Cucumber Demo Project</projectName>
+							<outputDirectory>${project.build.directory}/cucumber-html-reports</outputDirectory>
+							<cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+
+
+			<!-- Maven Surefire to run Cucumber JUnit runner -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -125,4 +167,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>
